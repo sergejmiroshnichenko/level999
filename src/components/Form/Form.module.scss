@@ -5,11 +5,10 @@ form {
     height: 35px;
     width: 200px;
     margin-right: 3px;
-
-    .errorMessage {
-      color: red;
-      margin: 0;
-      position: absolute
-    }
+  }
+  .errorMessage {
+    position: absolute;
+    color: red;
+    margin: 0;
   }
 }
