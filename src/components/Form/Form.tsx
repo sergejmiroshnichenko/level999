@@ -16,9 +16,9 @@ const Form: FC<FormProps> = ({ title, handleClick, initialName = '', placeholder
     const [formValid, setFormValid] = useState<boolean>(false)
 
     useEffect(() => {
-        if(valueError){
+        if (valueError) {
             setFormValid(false)
-        } else{
+        } else {
             setFormValid(true)
         }
     }, [valueError])
@@ -55,18 +55,18 @@ const Form: FC<FormProps> = ({ title, handleClick, initialName = '', placeholder
     return (
         <form onSubmit={handleSubmit}>
             <h2>{title}</h2>
-                <input value={value}
-                       onChange={valueHandler}
-                       type="text"
-                       required
-                       placeholder={placeholder}
-                />
-                {valueDirty && <p className={styles.errorMessage}>{valueError}</p>}
+            <input value={value}
+                   onChange={valueHandler}
+                   type="text"
+                   required
+                   placeholder={placeholder}
+            />
+            {valueDirty && <p className={styles.errorMessage}>{valueError}</p>}
             <button
                 disabled={!formValid}
                 type="submit"
             >
-               save
+                save
             </button>
         </form>
     )

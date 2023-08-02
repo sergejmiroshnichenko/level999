@@ -10,16 +10,12 @@ import Form from 'components/Form/Form'
 
 const HomePage = () => {
     const [modalActive, setModalActive] = useState(false)
-    const userName = useAppSelector(state => state.user.name)
-
-    const dispatch = useAppDispatch()
-
     const [editedName, setEditedName] = useState<string>(
-        () => {
-            const storedName = localStorage.getItem('username')
-            return storedName ? storedName : userName
-        }
+        () => localStorage.getItem('username') || userName
     )
+
+    const userName = useAppSelector(state => state.user.name)
+    const dispatch = useAppDispatch()
 
     const handleEditClick = () => {
         setModalActive(true)
@@ -35,10 +31,10 @@ const HomePage = () => {
 
     useEffect(() => {
         const storedName = localStorage.getItem('username')
-        if (storedName) {
-            dispatch(updateName({ newName: storedName }));
+        if (storedName && !userName) {
+            dispatch(updateName({ newName: storedName }))
         }
-    }, [dispatch])
+    }, [dispatch, userName])
 
     return (
         <>
@@ -54,7 +50,8 @@ const HomePage = () => {
                     </button>
                 </div>
             </main>
-            <Modal active={modalActive} setActive={setModalActive}
+            <Modal active={modalActive}
+                   setActive={setModalActive}
                    title={'Confirmation'}>
                 <Form
                     title='Change name'
