@@ -15,6 +15,7 @@ const LoginPage = () => {
     }
 
     const handleRegister = (value: string) => {
+        localStorage.setItem('username', value)
         dispatch(setUser({ name: value }));
         navigate('/home')
     }
